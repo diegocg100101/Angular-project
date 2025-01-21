@@ -1,0 +1,200 @@
+<!-- Formulario principal -->
+<div class="container mt-5">
+    <form [formGroup]="formulario" (ngSubmit)="enviar()">
+
+        <h1 class="text-center text-identificacion">Identificación</h1>
+
+        <div formGroupName="infoUsuario">
+            <div class="row mt-4">
+                <div class="col">
+                    <label for="nombre" class="text-turkey">Nombre *</label>
+                    <input type="text" id="nombre" class="form-control" formControlName="nombre">
+                    <span *ngIf="nombre?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="nombre?.errors?.['pattern']" class="text-danger">El nombre solo debe contener letras y
+                        espacios.</span>
+                </div>
+
+                <div class="col">
+                    <label for="apellido1" class="text-turkey">Primer apellido *</label>
+                    <input type="text" id="apellido1" class="form-control" formControlName="apellido1">
+                    <span *ngIf="apellido1?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="apellido1?.errors?.['pattern']" class="text-danger">El apellido solo debe contener
+                        letras y
+                        espacios.</span>
+                </div>
+
+                <div class="col">
+                    <label for="apellido2" class="text-turkey">Segundo Apellido</label>
+                    <input type="text" id="apellido2" class="form-control" formControlName="apellido2">
+                    <span *ngIf="apellido2?.errors?.['pattern']" class="text-danger">El apellido solo debe contener
+                        letras y
+                        espacios.</span>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <label for="curp" class="text-turkey">CURP *</label>
+                    <input type="text" id="curp" class="form-control" formControlName="curp">
+                    <span *ngIf="curp?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="curp?.errors?.['pattern']" class="text-danger">
+                        La CURP debe contener únicamente caracteres alfanuméricos
+                    </span>
+                    <span *ngIf="curp?.errors?.['minlength'] || curp?.errors?.['maxlength']" class="text-danger">
+                        La CURP debe contener 18 caracteres
+                    </span>
+                </div>
+
+                <div class="col">
+                    <label for="rfc" class="text-turkey">RFC (con homoclave) *</label>
+                    <input type="text" id="rfc" class="form-control" formControlName="rfc">
+                    <span *ngIf="rfc?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <div *ngIf="rfc?.errors?.['pattern']" class="text-danger">
+                        <span>
+                            El RFC debe contener únicamente caracteres alfanuméricos
+                        </span><br>
+                    </div>
+                    <span *ngIf="rfc?.errors?.['minlength'] || rfc?.errors?.['maxlength']" class="text-danger">
+                        El RFC debe contener 13 caracteres
+                    </span>
+                </div>
+            </div>
+        </div>
+
+
+        <div formGroupName="domicilio">
+            <div class="row mt-5">
+                <div class="col">
+                    <label for="cp" class="text-turkey">Código postal * </label>
+                    <input type="text" id="cp" class="form-control" formControlName="cp">
+                    <span *ngIf="cp?.errors?.['required']" class="text-danger">Obligatorio</span>
+
+                    <div *ngIf="cp?.errors?.['minlength'] || cp?.errors?.['maxlength']">
+                        <span class="text-danger">
+                            El código postal debe tener 5 dígitos
+                        </span><br>
+                    </div>
+
+                    <span *ngIf="cp?.errors?.['pattern']" class="text-danger">
+                        El campo solo debe contener números
+                    </span>
+                </div>
+
+                <div class="col">
+                    <label for="calle" class="text-turkey">Calle *</label>
+                    <input type="text" id="calle" class="form-control" formControlName="calle">
+                    <span *ngIf="calle?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="calle?.errors?.['pattern']" class="text-danger">El campo solo debe contener letras y
+                        espacios.</span>
+                </div>
+            </div>
+
+            <div class="row mt-5">
+
+                <div class="col">
+                    <label for="noExterior" class="text-turkey">Número exterior *</label>
+                    <input type="text" id="noExterior" class="form-control" formControlName="exterior">
+                    <span *ngIf="exterior?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="exterior?.errors?.['maxlength']" class="text-danger">
+                        El campo debe tener máximo 5 dígitos
+                    </span>
+                    <span *ngIf="exterior?.errors?.['pattern']" class="text-danger">
+                        El campo solo debe contener números
+                    </span>
+                </div>
+
+                <div class="col">
+                    <label for="noInterior" class="text-turkey">Número interior</label>
+                    <input type="text" id="noInterior" class="form-control" formControlName="interior">
+                    <div *ngIf="interior?.errors?.['pattern']">
+                        <span class="text-danger">El campo solo debe contener
+                            caracteres
+                            alfanuméricos.</span><br>
+                    </div>
+                    <span *ngIf="interior?.errors?.['maxlength']" class="text-danger">
+                        El campo debe tener máximo 10 dígitos
+                    </span>
+                </div>
+
+                <div class="col">
+                    <label for="estado" class="text-turkey">Estado *</label>
+                    <input type="text" id="estado" class="form-control" formControlName="estado">
+                    <span *ngIf="estado?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="estado?.errors?.['pattern']" class="text-danger">El campo solo debe contener letras y
+                        espacios.</span>
+                </div>
+
+            </div>
+
+            <div class="row mt-5">
+                <div class="col">
+                    <label for="municipio" class="text-turkey">Delegación/Municipio *</label>
+                    <input type="text" id="municipio" class="form-control" formControlName="municipio">
+                    <span *ngIf="municipio?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="municipio?.errors?.['pattern']" class="text-danger">El campo solo debe contener letras
+                        y
+                        espacios.</span>
+                </div>
+
+                <div class="col">
+                    <label for="colonia" class="text-turkey">Colonia *</label>
+                    <input type="text" id="colonia" class="form-control" formControlName="colonia">
+                    <span *ngIf="colonia?.errors?.['required']" class="text-danger">Obligatorio</span>
+                    <span *ngIf="colonia?.errors?.['pattern']" class="text-danger">El campo solo debe contener letras y
+                        espacios.</span>
+                </div>
+            </div>
+
+        </div>
+        <div class="col text-center">
+            <button type="submit" class="btn btn-primary mt-5" data-bs-toggle="modal" data-bs-target="#popup">Guardar</button>
+        </div>
+
+    </form>
+</div>
+
+<!-- Tabla que ordena los datos recibidos de la API -->
+<div class="container">
+    <table class="table mt-5">
+        <thead>
+            <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Website</th>
+                <th scope="col">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let usuario of usuarios">
+                <td>{{ usuario.id }}</td>
+                <td>{{ usuario.name }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.website }}</td>
+                <td>
+                    <a class="btn btn-outline-success m-2 col" (click)="editar(usuario.id)"><i class="bi bi-pencil"></i></a>
+                    <a class="btn btn-outline-danger m-2 col" (click)="eliminar(usuario.id)"><i class="bi bi-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- Popup para mostrar el mensaje -->
+<div class="modal fade" id="popup" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ mensajeTitulo }}</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {{ mensaje }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-bs-dismiss="modal" *ngIf="!success">Cerrar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal" *ngIf="success">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
