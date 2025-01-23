@@ -20,6 +20,7 @@ export class FormularioComponent {
 
   // Variable para identificar si se trata de un caso exitoso o no
   success: boolean = false;
+  cambiarIcono: boolean = false;
 
   // Atributo para realizar la petición del API
   constructor(private apiService: ApiService) { };
@@ -33,9 +34,9 @@ export class FormularioComponent {
       Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$')])),
       'apellido2': new FormControl('', Validators.compose([Validators.pattern('^[a-zA-ZáéíóúÁÉÍÓÚüÜñÑ ]*$')])),
       'curp': new FormControl('', Validators.compose([Validators.required,
-      Validators.pattern('^[a-zA-Z0-9]*$'),
-      Validators.minLength(18),
-      Validators.maxLength(18)])),
+        Validators.pattern('^[a-zA-Z0-9]*$'),
+        Validators.minLength(18),
+        Validators.maxLength(18)])),
       'rfc': new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9]*$'),
@@ -122,6 +123,18 @@ export class FormularioComponent {
 
   editar(id: String) {
     console.log(id)
+  }
+
+  // Método para cambiar la lista de forma ascendente a descendente
+  ordenarDescendente() {
+    this.cambiarIcono = true;
+    this.usuarios.sort((a, b) => b.id - a.id);
+  }
+
+  // Método para cambiar la lista de forma descendente a ascendente
+  ordenarAscendente() {
+    this.cambiarIcono = false;
+    this.usuarios.sort((a, b) => a.id - b.id);
   }
 
   // Getters para simplificar el archivo HTML

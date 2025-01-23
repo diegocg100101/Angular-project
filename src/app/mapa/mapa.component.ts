@@ -24,15 +24,15 @@ export class MapaComponent implements OnInit {
     this.map = L.map('mapa').fitWorld();
 
     // Inicializa la imagen del mapa
+
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      maxZoom: 19,
-      attribution: '© OpenStreetMap'
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(this.map);
 
     // Realiza petición GET a la URL y crea un marcador para cada usuario con su latitud y longitud
     this.apiService.getUsers().subscribe((data) => {
       this.usuarios = data;
-      for(let usuario of this.usuarios) {
+      for (let usuario of this.usuarios) {
         this.addMarker(usuario.address.geo.lat, usuario.address.geo.lng, usuario.name);
       }
     })

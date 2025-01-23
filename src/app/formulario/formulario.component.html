@@ -158,7 +158,11 @@
     <table class="table mt-5">
         <thead>
             <tr>
-                <th scope="col">ID</th>
+                <th scope="col">
+                    ID 
+                    <button *ngIf="!cambiarIcono" class="btn p-0" (click)="ordenarDescendente()"><i class="bi bi-arrow-up"></i></button> 
+                    <button *ngIf="cambiarIcono" class="btn p-0" (click)="ordenarAscendente()"><i class="bi bi-arrow-down"></i></button>
+                </th>
                 <th scope="col">Name</th>
                 <th scope="col">Email</th>
                 <th scope="col">Website</th>
@@ -185,7 +189,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="exampleModalLabel">{{ mensajeTitulo }}</h1>
+                <h1 class="modal-title fs-5" id="label">{{ mensajeTitulo }}</h1>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
